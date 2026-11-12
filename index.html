@@ -839,6 +839,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     </div>
 
+    <!-- Thank You Modal / View Container -->
+    <div id="thankYouModal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center hidden">
+      <div class="max-w-xl w-full mx-4 bg-white p-8 rounded-2xl shadow-xl text-center border-2 border-emerald-500">
+        <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h2 class="text-3xl font-bold text-slate-800 mb-3">ধন্যবাদ! আপনার অর্ডারটি সফলভাবে সম্পন্ন হয়েছে।</h2>
+        <p class="text-lg text-slate-600 mb-2">অর্ডার আইডি: <span id="modalOrderId" class="font-bold text-emerald-600"></span></p>
+        <p class="text-slate-500 mb-8">খুব শীঘ্রই আমাদের প্রতিনিধি আপনার দেওয়া নম্বরে যোগাযোগ করে অর্ডারটি কনফার্ম করবেন।</p>
+        <button onclick="closeThankYouModal()" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg transition duration-200 text-lg">
+          <i class="fa-solid fa-xmark mr-2"></i> বন্ধ করুন
+        </button>
+      </div>
+    </div>
+
     <script type="text/javascript">
     //<![CDATA[
       var basePrice = 1250.00;
@@ -903,6 +918,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           holdNote: ''
         };
 
+        // Orders Management Storage (LocalStorage Shared Sync)
         var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
         orders.unshift(newOrder);
         localStorage.setItem('my_orders', JSON.stringify(orders));
@@ -914,45 +930,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           'orderTotal': totalAmount
         });
 
-        var thankYouWindow = window.open('', '_blank');
-        if (thankYouWindow) {
-          var htmlContent = '<!DOCTYPE html>' +
-            '<html lang="bn">' +
-            '<head>' +
-              '<meta charset="UTF-8">' +
-              '<title>Order Success - Marine Collagen Premium</title>' +
-              '<script src="https://cdn.tailwindcss.com"><\/script>' +
-              '<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">' +
-              '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">' +
-              '<style>body { font-family: "Hind Siliguri", sans-serif; }</style>' +
-            '</head>' +
-            '<body class="bg-gray-50 flex items-center justify-center min-h-screen">' +
-              '<div class="max-w-xl w-full mx-4 bg-white p-8 rounded-2xl shadow-xl text-center border-2 border-emerald-500">' +
-                '<div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">' +
-                  '<i class="fa-solid fa-check"></i>' +
-                '</div>' +
-                '<h2 class="text-3xl font-bold text-slate-800 mb-3">ধন্যবাদ! আপনার অর্ডারটি সফলভাবে সম্পন্ন হয়েছে।</h2>' +
-                '<p class="text-lg text-slate-600 mb-2">অর্ডার আইডি: <span class="font-bold text-emerald-600">' + orderId + '</span></p>' +
-                '<p class="text-slate-500 mb-8">খুব শীঘ্রই আমাদের প্রতিনিধি আপনার দেওয়া নম্বরে যোগাযোগ করে অর্ডারটি কনফার্ম করবেন।</p>' +
-                '<button onclick="window.close()" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg transition duration-200 text-lg">' +
-                  '<i class="fa-solid fa-xmark mr-2"></i> ট্যাব বন্ধ করুন' +
-                '</button>' +
-              '</div>' +
-            '</body>' +
-            '</html>';
-
-          thankYouWindow.document.open();
-          thankYouWindow.document.write(htmlContent);
-          thankYouWindow.document.close();
-        } else {
-          alert('পপ-আপ ব্লক করা হয়েছে! দয়া করে ব্রাউজারের পপ-আপ সেটিংস অন করুন।');
+        // URL Hash or query state update for Thank You Page / Trigger configuration
+        if (history.pushState) {
+          var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?thank_you=success&order=' + orderId;
+          window.history.pushState({path:newurl}, '', newurl);
         }
+
+        // Show Clean In-Page Modal Thank You Screen with fixed URL state
+        document.getElementById("modalOrderId").innerText = orderId;
+        document.getElementById("thankYouModal").classList.remove("hidden");
 
         document.getElementById("customOrderForm").reset();
         currentQty = 1;
         updateQty(0);
 
         if(isAuthenticated) renderOrders();
+      }
+
+      function closeThankYouModal() {
+        document.getElementById("thankYouModal").classList.add("hidden");
+        // Reset URL back to base landing URL if needed
+        if (history.pushState) {
+          var cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+          window.history.pushState({path:cleanUrl}, '', cleanUrl);
+        }
       }
 
       function loginDashboard() {
@@ -1080,7 +1081,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var reviewImages = [
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg",
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
+          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WZHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg"
         ];
         
@@ -1093,6 +1094,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             rvTrack.appendChild(img);
           }
         }
+
+        // Cross-tab / Multi-device synchronization listener for orders storage update
+        window.addEventListener('storage', function(e) {
+          if (e.key === 'my_orders' && isAuthenticated) {
+            renderOrders();
+          }
+        });
       };
     //]]>
     </script>
