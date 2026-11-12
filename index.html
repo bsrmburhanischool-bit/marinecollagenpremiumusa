@@ -2,82 +2,25 @@
 <html lang="bn">
 <head>
     <!-- Google Tag Manager -->
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-53JJ6ZD5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-</script>
-    <!-- End Google Tag Manager -->
-
-    <meta charset="UTF-8">
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'l':l;j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53JJ6ZD5');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8"/>
     <meta content='True' name='HandheldFriendly'/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>NeoCell Marine Collagen Premium</title>
   
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      
-      fbq('set', 'autoConfig', false, '934429269550436');
-      fbq('init', '934429269550436'); 
-      fbq('set', 'agent', 'tmgoogletagmanager', '934429269550436');
-           
-      /* ---------- Conversions API helper (browser -> Cloudflare Worker) ---------- */
-      var CAPI_URL = 'https://marinecollagenpremium.as-taher2640.workers.dev/';
-
-      function getCookie(name) {
-        var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
-        return m ? decodeURIComponent(m[1]) : '';
-      }
-
-      function getFbc() {
-        var c = getCookie('_fbc');
-        if (c) return c;
-        try {
-          var id = new URLSearchParams(location.search).get('fbclid');
-          if (id) return 'fb.1.' + Date.now() + '.' + id;
-        } catch (e) {}
-        return '';
-      }
-
-      function sendCapi(payload) {
-        payload.event_source_url = location.href;
-        payload.event_time = Math.floor(Date.now() / 1000);
-        payload.fbp = getCookie('_fbp');
-        payload.fbc = getFbc();
-        try { var tec = new URLSearchParams(location.search).get('test_event_code'); if (tec) payload.test_event_code = tec; } catch (e) {}
-        return fetch(CAPI_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          keepalive: true
-        }).catch(function (err) { console.error('CAPI Error:', payload.event_name, err); });
-      }
-
-      /* PageView: ডাবল কাউন্ট রোধ করতে নির্দিষ্ট একটি আইডি দিয়ে একবারই ব্রাউজার ও সার্ভারে পাঠানো হচ্ছে */
-      var pageEventId = 'pageEvent_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
-      fbq('track', 'PageView', {}, {event_id: pageEventId});
-
-      setTimeout(function () {
-        sendCapi({ event_name: 'PageView', event_id: pageEventId });
-      }, 1000);
-    </script>
-    <!-- End Meta Pixel Code -->
 
     <style>
         :root {
@@ -155,32 +98,6 @@
 
         .nav-links a:hover {
             color: var(--primary-color);
-        }
-
-        .notification-toast {
-            position: fixed;
-            top: 70px;
-            right: 20px;
-            background: #ffffff;
-            border-left: 5px solid var(--accent-color);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            padding: 12px 20px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 9999;
-            transform: translateX(150%);
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .notification-toast.show {
-            transform: translateX(0);
-        }
-
-        .notification-toast i {
-            font-size: 24px;
-            color: var(--accent-color);
         }
 
         .social-floating-bar {
@@ -587,18 +504,16 @@
             .problem-card { width: 100% !important; max-width: 100% !important; margin-bottom: 15px; }
             .why-grid { grid-template-columns: 1fr; }
             .container { padding: 10px; }
-            .notification-toast { top: 70px; right: 10px; left: 10px; }
             .navbar { flex-direction: column; text-align: center; }
             .rv-track img{flex-basis:100%;width:100%}
         }
     </style>
 </head>
 <body>
-
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53JJ6ZD5"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53JJ6ZD5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
     <div class="top-marquee">
         <marquee behavior="scroll" direction="left" scrollamount="7">
@@ -613,14 +528,6 @@
             <a href="#offer-section">অফার</a>
             <a href="#faq-section">প্রশ্নোত্তর</a>
             <button type="button" onclick="scrollToOrder()" style="font-size: 20px; color: var(--primary-color); background: none; border: none; cursor: pointer; padding: 0;">অর্ডার</button>        
-        </div>
-    </div>
-
-    <div class="notification-toast" id="notificationToast">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <div class="notification-content">
-            <h4 id="popCustomerName">আব্দুর রহমান (ঢাকা)</h4>
-            <p id="popTime">মাত্র ১ মিনিট আগে অর্ডার করেছেন</p>
         </div>
     </div>
 
@@ -644,10 +551,10 @@
         <p style="font-size: 18px; margin-top: 5px;"><strong>মেরিন কোলাজেন</strong></p>
     </header>
 
-    <div class="container">
+    <div class="container" id="main-container">
         
         <div class="product-card" id="product-section">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWddvOgRqE8IIHpnnI_gtiitsLeosvKYjv2YwRFLPthhYa5xBn4zIAWg3prGWjWRFaniNKmbrAK21u6n7e6d6mN1PYjmbZrf-jilwLTg8ilYe_aB4RWfAuz4F5TBqhN3dTWUVS9ZtNch8ibORMAgzFHaDRiAimazOCq3V-M3l6mZ1U2QH2iQYRj15D2v4/w640-h342/PHOTO-01.jpg" alt="ডাক্তারের ছবি" style="width: 100%; max-width: 100%; height: auto; display: block; border-radius: 8px;">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWddvOgRqE8IIHpnnI_gtiitsLeosvKYjv2YwRFLPthhYa5xBn4zIAWg3prGWjWRFaniNKmbrAK21u6n7e6d6mN1PYjmbZrf-jilwLTg8ilYe_aB4RWfAuz4F5TBqhN3dTWUVS9ZtNch8ibORMAgzFHaDRiAimazOCq3V-M3l6mZ1U2QH2iQYRj15D2v4/w640-h342/PHOTO-01.jpg" alt="ডাক্তারের ছবি" style="width: 100%; max-width: 100%; height: auto; display: block; border-radius: 8px;"/>
             
             <div class="three-blocks">
                 <div class="info-block">✓ সাশ্রয় ৳ 1250</div>
@@ -678,7 +585,7 @@
                 </button>
                 <p class="sub-features">সহজ অর্ডার | সুরক্ষিত প্যাকেজিং | হাতে পেয়ে পেমেন্ট</p>
 
-                <hr style="margin: 25px 0; border: 0; border-top: 1px solid #eee;">
+                <hr style="margin: 25px 0; border: 0; border-top: 1px solid #eee;"/>
 
                 <div style="max-width: 600px; width: 100%; margin: 20px auto; padding: 0 10px;">
                   <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background: #000;">
@@ -702,7 +609,7 @@
 
         <div class="card-container">
           <div class="problem-card">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4tjbvjnHt0Md_7fjN3k5_WEJViwlfmafTqhxWQh4wmZJU0SktfCGb4QCYFDy7M3rtgNfAHMqjbiaSxRXgK4jCuQXOx-kOehABDvtgl_3KI3mKn4ehw93movK_WIG7WuQ-PkSB1ORitgFe7WKmFVzEBtG0HE30IodjFUJcfcV2T6DSUJJuq_R93Na47l0/w640-h476/p1.jpg" alt="ত্বকের সমস্যা" />
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4tjbvjnHt0Md_7fjN3k5_WEJViwlfmafTqhxWQh4wmZJU0SktfCGb4QCYFDy7M3rtgNfAHMqjbiaSxRXgK4jCuQXOx-kOehABDvtgl_3KI3mKn4ehw93movK_WIG7WuQ-PkSB1ORitgFe7WKmFVzEBtG0HE30IodjFUJcfcV2T6DSUJJuq_R93Na47l0/w640-h476/p1.jpg" alt="ত্বকের সমস্যা"/>
             <div class="card-content">
               <h3 class="card-title">ত্বকের সমস্যা</h3>
               <ul class="problem-list">
@@ -715,7 +622,7 @@
           </div>
 
           <div class="problem-card">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgh8lMqRMg6_FpmRNHmfH-nIlNx195vuPMi7pBaaBvpGDR-7GQolv4WNHeSW19u_jrjatW2gHwumfqVfr0tg6Y7OVXoK33pSv1lU-Bi8chFr2bgWbZ1K1pUt6aie5IFjgs9vqv3KcQn9bNXoJCKgWqQX2QmYpvUOKTExOhYLsSrtSoF2YpC3BDxfKbJvxA/w640-h374/p2.jpg" alt="চুলের সমস্যা" />
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgh8lMqRMg6_FpmRNHmfH-nIlNx195vuPMi7pBaaBvpGDR-7GQolv4WNHeSW19u_jrjatW2gHwumfqVfr0tg6Y7OVXoK33pSv1lU-Bi8chFr2bgWbZ1K1pUt6aie5IFjgs9vqv3KcQn9bNXoJCKgWqQX2QmYpvUOKTExOhYLsSrtSoF2YpC3BDxfKbJvxA/w640-h374/p2.jpg" alt="চুলের সমস্যা"/>
             <div class="card-content">
               <h3 class="card-title">চুলের সমস্যা</h3>
               <ul class="problem-list">
@@ -728,7 +635,7 @@
           </div>
 
           <div class="problem-card">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgj3LFwbcluUv9gR7L5lk1N6mNkmTqVLamrr5DJTmjS_wiShk3UD8LWCg6r9XyYmwxQNIZNU_bDujM9W9pRRdTRvTR31jci8EC0lyLbuRb0EBbXhORk0Lc0ozzek7N0TM9c2b-x9uX5fEGEgEsv9i-Mb8h9KwnFh6BgclEgVA69f9zULjEMlhaVxKyKFOU/w640-h338/p3.jpg" alt="নখের সমস্যা" />
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgj3LFwbcluUv9gR7L5lk1N6mNkmTqVLamrr5DJTmjS_wiShk3UD8LWCg6r9XyYmwxQNIZNU_bDujM9W9pRRdTRvTR31jci8EC0lyLbuRb0EBbXhORk0Lc0ozzek7N0TM9c2b-x9uX5fEGEgEsv9i-Mb8h9KwnFh6BgclEgVA69f9zULjEMlhaVxKyKFOU/w640-h338/p3.jpg" alt="নখের সমস্যা"/>
             <div class="card-content">
               <h3 class="card-title">নখের সমস্যা</h3>
               <ul class="problem-list">
@@ -763,9 +670,9 @@
 
         <div class="offer-card-container">
             <div class="offer-card">
-                <div class="offer-top-badge">ফুল কোর্স - মোট ৩ কৌটা <br> ১৮০ পিস ক্যাপসুল - ৩ মাস</div>
+                <div class="offer-top-badge">ফুল কোর্স - মোট ৩ কৌটা <br/> ১৮০ পিস ক্যাপসুল - ৩ মাস</div>
                 <div class="offer-image-box">
-                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZE0WSSuKmliVQ2n0IrF7KkmqlOs3x6suFVSQr9NdXzYzB2Vq8SN8T8x2H8WroL8lUjxN-qmZnDX5lf4UozPxaEhuIu9WRIAbfj64xsThXA7F6bBOHbSWeEoJ3h4TP2vEOWGVQkhcx-LGtNsArr2gZXUDMYcpDD4Ox3QThQrinkgJONMdZW5uY-9DVU_s/w380-h640/HMM.jpg" alt="Marine Collagen">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZE0WSSuKmliVQ2n0IrF7KkmqlOs3x6suFVSQr9NdXzYzB2Vq8SN8T8x2H8WroL8lUjxN-qmZnDX5lf4UozPxaEhuIu9WRIAbfj64xsThXA7F6bBOHbSWeEoJ3h4TP2vEOWGVQkhcx-LGtNsArr2gZXUDMYcpDD4Ox3QThQrinkgJONMdZW5uY-9DVU_s/w380-h640/HMM.jpg" alt="Marine Collagen"/>
                 </div>
                 <div class="current-price">1250 টাকা</div>
                 <div class="old-price">2500 টাকা</div>
@@ -819,6 +726,7 @@
           </div>
         </section>
 
+        <!-- Order Form Section -->
         <div class="max-w-4xl mx-auto my-8 p-4 md:p-6 bg-white border-2 border-[#006633] rounded-xl shadow-lg" id="order-section">
           <div class="bg-[#006633] text-white text-center py-3 px-4 rounded-lg font-bold text-lg md:text-xl mb-6 shadow-sm">
             অর্ডার করতে আপনার সঠিক তথ্য দিয়ে নিচের ফর্মটি সম্পূর্ণ পূরণ করুন।
@@ -831,7 +739,7 @@
                 <div>
                   <h3 class="text-lg font-bold text-gray-800 mb-3">Your Products</h3>
                   <div class="bg-[#f7faf8] border border-gray-200 rounded-lg p-4 flex items-center gap-4">
-                    <input type="radio" checked class="w-4 h-4 accent-[#006633]">
+                    <input type="radio" checked="checked" class="w-4 h-4 accent-[#006633]"/>
                     <div class="flex-1">
                       <h4 class="font-bold text-gray-800 text-sm md:text-base">৩ পিস (১৮০ পিস ক্যাপসুল)</h4>
                       <div class="flex items-center gap-3 mt-2">
@@ -852,19 +760,19 @@
                 <div class="space-y-4">
                   <div>
                     <label class="block font-bold text-gray-700 text-sm mb-1">আপনার নাম <span class="text-red-500">*</span></label>
-                    <input type="text" name="entry.820594857" id="name" placeholder="আপনার পুরো নাম লিখুন" required class="w-full p-2.5 border border-gray-300 rounded-md text-sm bg-white">
+                    <input type="text" id="name" placeholder="আপনার পুরো নাম লিখুন" required="required" class="w-full p-2.5 border border-gray-300 rounded-md text-sm bg-white"/>
                   </div>
                   <div>
                     <label class="block font-bold text-gray-700 text-sm mb-1">আপনার সম্পূর্ণ ঠিকানা <span class="text-red-500">*</span></label>
-                    <input type="text" name="entry.1521714117" id="address" placeholder="বাসা, এলাকা, থানা এবং জেলা সহ লিখুন" required class="w-full p-2.5 border border-gray-300 rounded-md text-sm bg-white">
+                    <input type="text" id="address" placeholder="বাসা, এলাকা, থানা এবং জেলা সহ লিখুন" required="required" class="w-full p-2.5 border border-gray-300 rounded-md text-sm bg-white"/>
                   </div>
                   <div>
                     <label class="block font-bold text-gray-700 text-sm mb-1">আপনার ফোন নম্বর <span class="text-red-500">*</span></label>
-                    <input type="tel" name="entry.1363179355" id="phone" placeholder="১১ ডিজিটের মোবাইল নম্বর দিন" pattern="[0-9]{11}" required class="w-full p-2.5 border border-gray-300 rounded-md text-sm bg-white">
+                    <input type="tel" id="phone" placeholder="১১ ডিজিটের মোবাইল নম্বর দিন" pattern="[0-9]{11}" required="required" class="w-full p-2.5 border border-gray-300 rounded-md text-sm bg-white"/>
                   </div>
                   <div>
                     <label class="block font-bold text-gray-700 text-sm mb-1">বিশেষ কোনো নির্দেশ (ঐচ্ছিক):</label>
-                    <input type="text" name="entry.880453828" id="notes" placeholder="যেমন: ডেলিভারির সময় কল দিবেন" class="w-full p-2.5 border border-gray-300 rounded-md text-sm bg-white">
+                    <input type="text" id="notes" placeholder="যেমন: ডেলিভারির সময় কল দিবেন" class="w-full p-2.5 border border-gray-300 rounded-md text-sm bg-white"/>
                   </div>
                 </div>
               </div>
@@ -897,65 +805,45 @@
           </form>
         </div>
 
+        <!-- Custom Order Management Dashboard -->
+        <div class="max-w-6xl mx-auto my-12 p-6 bg-slate-900 text-white rounded-xl shadow-2xl border border-slate-700" id="admin-dashboard-section">
+            <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-700">
+                <h2 class="text-xl font-bold text-emerald-400"><i class="fa-solid fa-gauge mr-2"></i>অর্ডার ম্যানেজমেন্ট ড্যাশবোর্ড</h2>
+                <button type="button" onclick="loginDashboard()" id="authBtn" class="bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded text-sm font-semibold">লগইন</button>
+            </div>
+
+            <div id="dashboardContent" class="hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-slate-800 text-slate-300 border-b border-slate-700">
+                                <th class="p-3">অর্ডার আইডি</th>
+                                <th class="p-3">তারিখ</th>
+                                <th class="p-3">কাস্টমার তথ্য</th>
+                                <th class="p-3">ঠিকানা</th>
+                                <th class="p-3">মোট টাকা</th>
+                                <th class="p-3">Status</th>
+                                <th class="p-3 text-center">অ্যাকশন</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody" class="divide-y divide-slate-800">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="loginPrompt" class="text-center py-8 text-slate-400">
+                <p>ড্যাশবোর্ড দেখতে পাসওয়ার্ড দিয়ে লগইন করুন।</p>
+            </div>
+        </div>
+
     </div>
 
-    <div id="receiptModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4 z-50">
-      <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative text-slate-800 text-left" onclick="event.stopPropagation()">
-        <div class="text-center mb-4">
-          <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-2xl mb-2">
-            <i class="fa-solid fa-circle-check"></i>
-          </div>
-          <h2 class="text-2xl font-bold text-slate-900">অর্ডার সফল হয়েছে!</h2>
-          <p class="text-xs text-gray-500">আপনার অর্ডারটি নিশ্চিত করা হয়েছে। নিচে রিসিভ কপিটি দেওয়া হলো:</p>
-        </div>
-
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm space-y-2 mb-4" id="receiptContentArea">
-          <div class="flex justify-between font-bold border-b pb-2 mb-2">
-            <span>অর্ডার মেমো / রিসিভ কপি</span>
-            <span id="orderDate" class="text-gray-500 font-normal"></span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-gray-500">অর্ডার আইডি:</span>
-            <strong id="recOrderId">#ORD-0000</strong>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-gray-500">কাস্টমারের নাম:</span>
-            <strong id="recName">-</strong>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-gray-500">মোবাইল নম্বর:</span>
-            <strong id="recPhone">-</strong>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-gray-500">ডেলিভারি ঠিকানা:</span>
-            <strong id="recAddress" class="text-right max-w-[200px]">-</strong>
-          </div>
-          <div class="flex justify-between border-t pt-2">
-            <span class="text-gray-500">মোট মূল্য:</span>
-            <strong id="recTotalAmount" class="text-emerald-700 font-bold">৳ 1,250.00</strong>
-          </div>
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <a id="whatsappShareBtn" href="#" target="_blank" type="button" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-semibold py-2.5 rounded-lg text-sm text-center flex items-center justify-center gap-2">
-            <i class="fa-brands fa-whatsapp text-lg"></i> হোয়াটসঅ্যাপে স্ক্রিনশট / অর্ডার পাঠান
-          </a>
-          <div class="flex gap-2">
-            <button type="button" onclick="window.print()" class="flex-1 bg-slate-800 text-white font-semibold py-2.5 rounded-lg text-sm hover:bg-slate-900">
-              <i class="fa-solid fa-print mr-1"></i> প্রিন্ট / সেভ
-            </button>
-            <button type="button" onclick="closeReceiptModal()" class="flex-1 bg-gray-200 text-gray-800 font-semibold py-2.5 rounded-lg text-sm hover:bg-gray-300">
-              বন্ধ করুন
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script>
+    <script type="text/javascript">
+    //<![CDATA[
       var basePrice = 1250.00;
       var currentQty = 1;
-      var isSubmitting = false;
+      var isAuthenticated = false;
 
       function scrollToOrder() {
         var orderSec = document.getElementById("order-section");
@@ -986,23 +874,8 @@
         if (btnPriceEl) btnPriceEl.innerText = formattedPrice;
       }
 
-      function resetSubmitButton() {
-        var btn = document.getElementById("submitBtn");
-        if (!btn) return;
-        var formattedPrice = '৳ ' + (basePrice * currentQty).toLocaleString('en-US') + '.00';
-        btn.innerHTML = '<i class="fa-solid fa-lock"></i> <span>অর্ডার কনফার্ম করুন <span id="btnPrice">' + formattedPrice + '</span></span>';
-        btn.disabled = false;
-      }
-
       function handleFormSubmit(event) {
         event.preventDefault();
-
-        /* শুধুমাত্র আসল "অর্ডার কনফার্ম করুন" সাবমিট বাটন থেকেই Purchase ইভেন্ট কাউন্ট হবে */
-        if (event.isTrusted === false) return;
-        if (event.submitter && event.submitter.id !== "submitBtn") return;
-
-        var submitBtn = document.getElementById("submitBtn");
-        if (isSubmitting || submitBtn.disabled) return;
 
         var name = document.getElementById("name").value.trim();
         var phone = document.getElementById("phone").value.trim();
@@ -1015,88 +888,167 @@
           return;
         }
 
-        isSubmitting = true;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> প্রসেসিং হচ্ছে...';
+        var orderId = '#ORD-' + Math.floor(100000 + Math.random() * 900000);
+        var orderDate = new Date().toLocaleString('bn-BD');
 
-        var purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
-
-        try {
-          if (typeof fbq === "function") {
-            fbq("track", "Purchase", {
-              value: totalAmount,
-              currency: "BDT"
-            }, { event_id: purchaseEventId });
-          }
-        } catch (e) { console.error("Pixel Purchase Error", e); }
-
-        sendCapi({
-          event_name: "Purchase",
-          event_id: purchaseEventId,
-          value: totalAmount,
-          currency: "BDT",
+        var newOrder = {
+          id: orderId,
+          date: orderDate,
+          name: name,
           phone: phone,
-          name: name
+          address: address,
+          notes: notes,
+          total: '৳ ' + totalAmount.toLocaleString('en-US') + '.00',
+          status: 'Order',
+          holdNote: ''
+        };
+
+        var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+        orders.unshift(newOrder);
+        localStorage.setItem('my_orders', JSON.stringify(orders));
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'orderComplete',
+          'orderId': orderId,
+          'orderTotal': totalAmount
         });
 
-        var formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdFyYJcaKCzu2mZ1hxAxqoHdSgkQauPto8KAJS5BHECtb4YeA/formResponse";
-        var formData = new URLSearchParams();
-        formData.append("entry.820594857", name);
-        formData.append("entry.1363179355", phone);
-        formData.append("entry.1521714117", address);
-        formData.append("entry.880453828", notes);
+        var thankYouWindow = window.open('', '_blank');
+        if (thankYouWindow) {
+          var htmlContent = '<!DOCTYPE html>' +
+            '<html lang="bn">' +
+            '<head>' +
+              '<meta charset="UTF-8">' +
+              '<title>Order Success - Marine Collagen Premium</title>' +
+              '<script src="https://cdn.tailwindcss.com"><\/script>' +
+              '<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">' +
+              '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">' +
+              '<style>body { font-family: "Hind Siliguri", sans-serif; }</style>' +
+            '</head>' +
+            '<body class="bg-gray-50 flex items-center justify-center min-h-screen">' +
+              '<div class="max-w-xl w-full mx-4 bg-white p-8 rounded-2xl shadow-xl text-center border-2 border-emerald-500">' +
+                '<div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">' +
+                  '<i class="fa-solid fa-check"></i>' +
+                '</div>' +
+                '<h2 class="text-3xl font-bold text-slate-800 mb-3">ধন্যবাদ! আপনার অর্ডারটি সফলভাবে সম্পন্ন হয়েছে।</h2>' +
+                '<p class="text-lg text-slate-600 mb-2">অর্ডার আইডি: <span class="font-bold text-emerald-600">' + orderId + '</span></p>' +
+                '<p class="text-slate-500 mb-8">খুব শীঘ্রই আমাদের প্রতিনিধি আপনার দেওয়া নম্বরে যোগাযোগ করে অর্ডারটি কনফার্ম করবেন।</p>' +
+                '<button onclick="window.close()" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg transition duration-200 text-lg">' +
+                  '<i class="fa-solid fa-xmark mr-2"></i> ট্যাব বন্ধ করুন' +
+                '</button>' +
+              '</div>' +
+            '</body>' +
+            '</html>';
 
-        fetch(formUrl, {
-          method: "POST",
-          mode: "no-cors",
-          body: formData
-        }).catch(function(err){
-          console.error("Form submit error", err);
-        });
-
-        setTimeout(function() {
-          try {
-            showSuccessMessage(name, phone, address, totalAmount);
-          } catch (err) {
-            console.error("Receipt error", err);
-          } finally {
-            resetSubmitButton();
-            isSubmitting = false;
-          }
-        }, 1250);
-      }
-
-      function showSuccessMessage(name, phone, address, totalAmountNum) {
-        var totalAmountStr = '৳ ' + totalAmountNum.toLocaleString('en-US') + '.00';
-
-        document.getElementById("recName").innerText = name;
-        document.getElementById("recPhone").innerText = phone;
-        document.getElementById("recAddress").innerText = address;
-        document.getElementById("recTotalAmount").innerText = totalAmountStr;
-
-        var randomId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
-        document.getElementById("recOrderId").innerText = '#' + randomId;
-        
-        var today = new Date();
-        var dateStr = today.toLocaleDateString('bn-BD', { day: 'numeric', month: 'short', year: 'numeric' });
-        document.getElementById("orderDate").innerText = dateStr;
-
-        var whatsappText = `হ্যালো, আমি একটি নতুন অর্ডার করেছি।%0aঅর্ডার আইডি: %23${randomId}%0aনাম: ${encodeURIComponent(name)}%0aফোন: ${phone}%0aঠিকানা: ${encodeURIComponent(address)}%0aমোট মূল্য: ${totalAmountStr}`;
-        var whatsappUrl = `https://wa.me/8801868483379?text=${whatsappText}`;
-        document.getElementById("whatsappShareBtn").setAttribute("href", whatsappUrl);
-
-        document.getElementById("receiptModal").classList.remove("hidden");
-        document.getElementById("receiptModal").classList.add("flex");
+          thankYouWindow.document.open();
+          thankYouWindow.document.write(htmlContent);
+          thankYouWindow.document.close();
+        } else {
+          alert('পপ-আপ ব্লক করা হয়েছে! দয়া করে ব্রাউজারের পপ-আপ সেটিংস অন করুন।');
+        }
 
         document.getElementById("customOrderForm").reset();
         currentQty = 1;
         updateQty(0);
+
+        if(isAuthenticated) renderOrders();
       }
 
-      function closeReceiptModal() {
-        document.getElementById("receiptModal").classList.add("hidden");
-        document.getElementById("receiptModal").classList.remove("flex");
-        resetSubmitButton();
+      function loginDashboard() {
+        var pwd = prompt("ড্যাশবোর্ড অ্যাক্সেস করতে পাসওয়ার্ড দিন:");
+        if(pwd === "C0@ching") {
+            isAuthenticated = true;
+            document.getElementById("loginPrompt").classList.add("hidden");
+            document.getElementById("dashboardContent").classList.remove("hidden");
+            document.getElementById("authBtn").innerText = "লগআউট";
+            document.getElementById("authBtn").onclick = logoutDashboard;
+            renderOrders();
+        } else if(pwd !== null) {
+            alert("ভুল পাসওয়ার্ড!");
+        }
+      }
+
+      function logoutDashboard() {
+        isAuthenticated = false;
+        document.getElementById("loginPrompt").classList.remove("hidden");
+        document.getElementById("dashboardContent").classList.add("hidden");
+        document.getElementById("authBtn").innerText = "লগইন";
+        document.getElementById("authBtn").onclick = loginDashboard;
+      }
+
+      function renderOrders() {
+        var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+        var tbody = document.getElementById("ordersTableBody");
+        tbody.innerHTML = "";
+
+        if(orders.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" class="p-4 text-center text-slate-500">কোনো অর্ডার পাওয়া যায়নি।</td></tr>';
+            return;
+        }
+
+        orders.forEach(function(order, index) {
+            var isHold = order.status === 'Hold';
+            var tr = document.createElement("tr");
+            tr.className = "hover:bg-slate-800/50 border-b border-slate-800";
+            
+            var holdInput = isHold ? '<input type="text" placeholder="হোল্ডের কারণ লিখুন..." value="' + (order.holdNote || '') + '" onchange="updateHoldNote(' + index + ', this.value)" class="mt-1 w-full bg-slate-900 border border-slate-700 text-xs p-1 rounded text-slate-300">' : '';
+
+            tr.innerHTML = 
+                '<td class="p-3 font-semibold text-emerald-400">' + order.id + '</td>' +
+                '<td class="p-3 text-xs text-slate-400">' + order.date + '</td>' +
+                '<td class="p-3">' +
+                    '<div class="font-bold">' + order.name + '</div>' +
+                    '<div class="text-xs text-slate-400">' + order.phone + '</div>' +
+                '</td>' +
+                '<td class="p-3 text-xs max-w-[150px] truncate">' + order.address + '</td>' +
+                '<td class="p-3 font-bold text-emerald-400">' + order.total + '</td>' +
+                '<td class="p-3">' +
+                    '<select onchange="updateStatus(' + index + ', this.value)" class="bg-slate-800 border border-slate-600 text-xs rounded p-1 text-white">' +
+                        '<option value="Order" ' + (order.status==='Order'?'selected':'') + '>Order</option>' +
+                        '<option value="Delivery" ' + (order.status==='Delivery'?'selected':'') + '>Delivery</option>' +
+                        '<option value="Purchase" ' + (order.status==='Purchase'?'selected':'') + '>Purchase</option>' +
+                        '<option value="Hold" ' + (order.status==='Hold'?'selected':'') + '>Hold</option>' +
+                    '</select>' +
+                    holdInput +
+                '</td>' +
+                '<td class="p-3 text-center space-x-1">' +
+                    '<button type="button" onclick="copyOrder(' + index + ')" class="bg-slate-700 hover:bg-slate-600 px-2 py-1 rounded text-xs" title="তথ্য কপি করুন"><i class="fa-solid fa-copy"></i></button>' +
+                    '<button type="button" onclick="deleteOrder(' + index + ')" class="bg-red-600 hover:bg-red-700 px-2 py-1 rounded text-xs" title="টেস্ট অর্ডার ডিলিট করুন"><i class="fa-solid fa-trash"></i></button>' +
+                '</td>';
+            tbody.appendChild(tr);
+        });
+      }
+
+      function updateStatus(index, val) {
+        var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+        orders[index].status = val;
+        localStorage.setItem('my_orders', JSON.stringify(orders));
+        renderOrders();
+      }
+
+      function updateHoldNote(index, note) {
+        var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+        orders[index].holdNote = note;
+        localStorage.setItem('my_orders', JSON.stringify(orders));
+      }
+
+      function copyOrder(index) {
+        var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+        var o = orders[index];
+        var noteText = o.holdNote ? '\nNote: ' + o.holdNote : '';
+        var text = 'ID: ' + o.id + '\nName: ' + o.name + '\nPhone: ' + o.phone + '\nAddress: ' + o.address + '\nTotal: ' + o.total + '\nStatus: ' + o.status + noteText;
+        navigator.clipboard.writeText(text);
+        alert("অর্ডারের তথ্য কপি করা হয়েছে!");
+      }
+
+      function deleteOrder(index) {
+        if(confirm("আপনি কি সত্যিই এই টেস্ট অর্ডারটি মুছে ফেলতে চান?")) {
+            var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+            orders.splice(index, 1);
+            localStorage.setItem('my_orders', JSON.stringify(orders));
+            renderOrders();
+        }
       }
 
       function startTimer(duration, h, m, s) {
@@ -1125,16 +1077,24 @@
             s = document.querySelector('#seconds');
         if(h && m && s) startTimer(sixHours, h, m, s);
 
-        [
+        var reviewImages = [
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg",
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LuThHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg"
-        ].forEach(function(imgSrc) {
-            var rvTrack = document.getElementById("rv");
-            if(rvTrack) rvTrack.insertAdjacentHTML("beforeend", `<img src="${imgSrc}" loading="lazy">`);
-        });
+          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg"
+        ];
+        
+        var rvTrack = document.getElementById("rv");
+        if (rvTrack) {
+          for (var i = 0; i < reviewImages.length; i++) {
+            var img = document.createElement("img");
+            img.src = reviewImages[i];
+            img.loading = "lazy";
+            rvTrack.appendChild(img);
+          }
+        }
       };
+    //]]>
     </script>
 </body>
 </html>
