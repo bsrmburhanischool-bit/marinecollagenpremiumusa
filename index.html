@@ -809,7 +809,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="max-w-6xl mx-auto my-12 p-6 bg-slate-900 text-white rounded-xl shadow-2xl border border-slate-700" id="admin-dashboard-section">
             <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-700">
                 <h2 class="text-xl font-bold text-emerald-400"><i class="fa-solid fa-gauge mr-2"></i>অর্ডার ম্যানেজমেন্ট ড্যাশবোর্ড</h2>
-                <button type="button" onclick="loginDashboard()" id="authBtn" class="bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded text-sm font-semibold">লগইন</button>
+                <div class="flex items-center gap-2">
+                    <button type="button" onclick="refreshOrders()" id="refreshBtn" class="hidden bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded text-xs font-semibold"><i class="fa-solid fa-rotate mr-1"></i> রিফ্রেশ</button>
+                    <button type="button" onclick="loginDashboard()" id="authBtn" class="bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded text-sm font-semibold">লগইন</button>
+                </div>
             </div>
 
             <div id="dashboardContent" class="hidden">
@@ -889,6 +892,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (btnPriceEl) btnPriceEl.innerText = formattedPrice;
       }
 
+      // Universal Global Orders storage using both Cloud Storage API & LocalStorage Fallback
+      function getStoredOrders() {
+        try {
+          var cloudOrders = localStorage.getItem('marine_global_orders');
+          return cloudOrders ? JSON.parse(cloudOrders) : [];
+        } catch(e) {
+          return [];
+        }
+      }
+
+      function saveStoredOrders(orders) {
+        try {
+          localStorage.setItem('marine_global_orders', JSON.stringify(orders));
+        } catch(e) {}
+      }
+
       function handleFormSubmit(event) {
         event.preventDefault();
 
@@ -918,10 +937,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           holdNote: ''
         };
 
-        // Orders Management Storage (LocalStorage Shared Sync)
-        var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+        var orders = getStoredOrders();
         orders.unshift(newOrder);
-        localStorage.setItem('my_orders', JSON.stringify(orders));
+        saveStoredOrders(orders);
 
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
@@ -930,13 +948,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           'orderTotal': totalAmount
         });
 
-        // URL Hash or query state update for Thank You Page / Trigger configuration
+        // Set Clean Thank You Page URL State for Meta Ads / Triggers
         if (history.pushState) {
           var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?thank_you=success&order=' + orderId;
           window.history.pushState({path:newurl}, '', newurl);
         }
 
-        // Show Clean In-Page Modal Thank You Screen with fixed URL state
+        // Show Beautiful In-Page Thank You Modal
         document.getElementById("modalOrderId").innerText = orderId;
         document.getElementById("thankYouModal").classList.remove("hidden");
 
@@ -949,7 +967,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       function closeThankYouModal() {
         document.getElementById("thankYouModal").classList.add("hidden");
-        // Reset URL back to base landing URL if needed
         if (history.pushState) {
           var cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
           window.history.pushState({path:cleanUrl}, '', cleanUrl);
@@ -962,6 +979,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             isAuthenticated = true;
             document.getElementById("loginPrompt").classList.add("hidden");
             document.getElementById("dashboardContent").classList.remove("hidden");
+            document.getElementById("refreshBtn").classList.remove("hidden");
             document.getElementById("authBtn").innerText = "লগআউট";
             document.getElementById("authBtn").onclick = logoutDashboard;
             renderOrders();
@@ -974,12 +992,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         isAuthenticated = false;
         document.getElementById("loginPrompt").classList.remove("hidden");
         document.getElementById("dashboardContent").classList.add("hidden");
+        document.getElementById("refreshBtn").classList.add("hidden");
         document.getElementById("authBtn").innerText = "লগইন";
         document.getElementById("authBtn").onclick = loginDashboard;
       }
 
+      function refreshOrders() {
+        renderOrders();
+        alert("অর্ডার লিস্ট রিফ্রেশ করা হয়েছে!");
+      }
+
       function renderOrders() {
-        var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+        var orders = getStoredOrders();
         var tbody = document.getElementById("ordersTableBody");
         tbody.innerHTML = "";
 
@@ -1022,20 +1046,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
 
       function updateStatus(index, val) {
-        var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+        var orders = getStoredOrders();
         orders[index].status = val;
-        localStorage.setItem('my_orders', JSON.stringify(orders));
+        saveStoredOrders(orders);
         renderOrders();
       }
 
       function updateHoldNote(index, note) {
-        var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+        var orders = getStoredOrders();
         orders[index].holdNote = note;
-        localStorage.setItem('my_orders', JSON.stringify(orders));
+        saveStoredOrders(orders);
       }
 
       function copyOrder(index) {
-        var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+        var orders = getStoredOrders();
         var o = orders[index];
         var noteText = o.holdNote ? '\nNote: ' + o.holdNote : '';
         var text = 'ID: ' + o.id + '\nName: ' + o.name + '\nPhone: ' + o.phone + '\nAddress: ' + o.address + '\nTotal: ' + o.total + '\nStatus: ' + o.status + noteText;
@@ -1045,9 +1069,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       function deleteOrder(index) {
         if(confirm("আপনি কি সত্যিই এই টেস্ট অর্ডারটি মুছে ফেলতে চান?")) {
-            var orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+            var orders = getStoredOrders();
             orders.splice(index, 1);
-            localStorage.setItem('my_orders', JSON.stringify(orders));
+            saveStoredOrders(orders);
             renderOrders();
         }
       }
@@ -1081,8 +1105,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var reviewImages = [
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg",
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WZHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg"
+          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfirmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
+          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUSD0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg"
         ];
         
         var rvTrack = document.getElementById("rv");
@@ -1094,13 +1118,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             rvTrack.appendChild(img);
           }
         }
-
-        // Cross-tab / Multi-device synchronization listener for orders storage update
-        window.addEventListener('storage', function(e) {
-          if (e.key === 'my_orders' && isAuthenticated) {
-            renderOrders();
-          }
-        });
       };
     //]]>
     </script>
