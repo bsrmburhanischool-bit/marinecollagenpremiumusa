@@ -55,15 +55,7 @@
           keepalive: true
         }).catch(function (err) { console.error('CAPI Error:', payload.event_name, err); });
       }
-
-      /* PageView: একই event_id ব্রাউজার পিক্সেল ও সার্ভার (CAPI) দুই জায়গায় যায় */
-      var pageEventId = 'pageEvent_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
-      fbq('track', 'PageView', {}, {event_id: pageEventId});
-
-      setTimeout(function () {
-        sendCapi({ event_name: 'PageView', event_id: pageEventId });
-      }, 1000);
-    </script>
+        
     <!-- End Meta Pixel Code -->
 
     <style>
@@ -974,23 +966,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         var purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
 
-        try {
-          if (typeof fbq === "function") {
-            fbq("track", "Purchase", {
-              value: totalAmount,
-              currency: "BDT"
-            }, { event_id: purchaseEventId });
-          }
-        } catch (e) { console.error("Pixel Purchase Error", e); }
-
-        sendCapi({
-          event_name: "Purchase",
-          event_id: purchaseEventId,
-          value: totalAmount,
-          currency: "BDT",
-          phone: phone,
-          name: name
-        });
+sendCapi({
+  event_name: "Purchase",
+  event_id: purchaseEventId,
+  value: totalAmount,
+  currency: "BDT",
+  phone: phone,
+  name: name
+});
 
         // Google Form Submission Link
         var formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdFyYJcaKCzu2mZ1hxAxqoHdSgkQauPto8KAJS5BHECtb4YeA/formResponse";
