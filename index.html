@@ -23,7 +23,6 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Meta Pixel Code -->
     <script>
       /* ---------- Conversions API helper (browser -> Cloudflare Worker) ---------- */
       var CAPI_URL = 'https://marinecollagenpremium.as-taher2640.workers.dev/';
@@ -55,8 +54,7 @@
           keepalive: true
         }).catch(function (err) { console.error('CAPI Error:', payload.event_name, err); });
       }
-        
-    <!-- End Meta Pixel Code -->
+    </script>
 
     <style>
         :root {
@@ -966,14 +964,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         var purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
 
-sendCapi({
-  event_name: "Purchase",
-  event_id: purchaseEventId,
-  value: totalAmount,
-  currency: "BDT",
-  phone: phone,
-  name: name
-});
+        sendCapi({
+          event_name: "Purchase",
+          event_id: purchaseEventId,
+          value: totalAmount,
+          currency: "BDT",
+          phone: phone,
+          name: name
+        });
 
         // Google Form Submission Link
         var formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdFyYJcaKCzu2mZ1hxAxqoHdSgkQauPto8KAJS5BHECtb4YeA/formResponse";
@@ -996,7 +994,6 @@ sendCapi({
 
       function pageLoadedAfterSubmit(name, phone, address, totalAmountNum) {
         try {
-          // GTM ট্রিগারের জন্য ইউআরএল-এ থ্যাঙ্ক ইউ প্যারামিটার যোগ করা (পাতা পরিবর্তন না করেই)
           if (history.pushState) {
             var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?thank_you=success';
             window.history.pushState({path:newurl}, '', newurl);
@@ -1042,7 +1039,6 @@ sendCapi({
         document.getElementById("receiptModal").classList.add("hidden");
         document.getElementById("receiptModal").classList.remove("flex");
         
-        // পপআপ বন্ধ করলে ইউআরএল আগের মতো ক্লিন করে দেওয়া
         if (history.pushState) {
           var cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
           window.history.pushState({path:cleanUrl}, '', cleanUrl);
@@ -1080,7 +1076,7 @@ sendCapi({
         var reviewImages = [
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg",
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WPHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
+          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QxcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUSD0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg"
         ];
         
