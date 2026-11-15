@@ -973,7 +973,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           name: name
         });
 
-        // GTM DataLayer Push
+        // GTM DataLayer Push (ডুপ্লিকেট রোধ করতে event_id সহ পাঠানো হলো)
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: 'custom_purchase',
@@ -1087,8 +1087,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var reviewImages = [
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg",
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUSD0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg"
+          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WQHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
+          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoById0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg"
         ];
         
         var rvTrack = document.getElementById("rv");
