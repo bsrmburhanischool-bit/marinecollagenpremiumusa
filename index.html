@@ -962,17 +962,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> প্রসেসিং হচ্ছে...';
 
-        var purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
-
-        sendCapi({
-          event_name: "Purchase",
+var purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
+        // GTM DataLayer Push
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'custom_purchase',
           event_id: purchaseEventId,
           value: totalAmount,
-          currency: "BDT",
-          phone: phone,
-          name: name
+          currency: 'BDT',
+          customer_name: name,
+          customer_phone: phone
         });
-
         // Google Form Submission Link
         var formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdFyYJcaKCzu2mZ1hxAxqoHdSgkQauPto8KAJS5BHECtb4YeA/formResponse";
         var formData = new URLSearchParams();
