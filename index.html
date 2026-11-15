@@ -938,85 +938,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         btn.disabled = false;
       }
 
-     function handleFormSubmit(event) {
-  event.preventDefault();
+      function handleFormSubmit(event) {
+        event.preventDefault();
 
-  if (isSubmitting) return;
+        if (isSubmitting) return;
 
-  var submitBtn = document.getElementById("submitBtn");
-  if (!submitBtn || submitBtn.disabled) return;
+        var submitBtn = document.getElementById("submitBtn");
+        if (!submitBtn || submitBtn.disabled) return;
 
-  var name = document.getElementById("name").value.trim();
-  var phone = document.getElementById("phone").value.trim();
-  var address = document.getElementById("address").value.trim();
-  var notes = document.getElementById("notes").value.trim();
-  var totalAmount = basePrice * currentQty;
+        var name = document.getElementById("name").value.trim();
+        var phone = document.getElementById("phone").value.trim();
+        var address = document.getElementById("address").value.trim();
+        var notes = document.getElementById("notes").value.trim();
+        var totalAmount = basePrice * currentQty;
 
-  if (!name || !phone || !address) {
-    alert('অনুগ্রহ করে প্রয়োজনীয় তথ্যগুলো পূরণ করুন।');
-    return;
-  }
-
-  isSubmitting = true;
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> প্রসেসিং হচ্ছে...';
-
-  var purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
-
-  // CAPI Call
-  sendCapi({
-    event_name: "Purchase",
-    event_id: purchaseEventId,
-    value: totalAmount,
-    currency: "BDT",
-    phone: phone,
-    name: name
-  });
-
-  // GTM DataLayer Push (ডাবল এন্ট্রি রোধ করতে সঠিকভাবে পুশ করা হলো)
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'custom_purchase',
-    event_id: purchaseEventId,
-    value: totalAmount,
-    currency: 'BDT'
-  });
-
-  // Google Form Submission Link
-  var formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdFyYJcaKCzu2mZ1hxAxqoHdSgkQauPto8KAJS5BHECtb4YeA/formResponse";
-  var formData = new URLSearchParams();
-  formData.append("entry.820594857", name);
-  formData.append("entry.1363179355", phone);
-  formData.append("entry.1521714117", address);
-  formData.append("entry.880453828", notes);
-
-  fetch(formUrl, {
-    method: "POST",
-    mode: "no-cors",
-    body: formData
-  }).catch(function(err){
-    console.error("Form submit error", err);
-  });
-
-  setTimeout(pageLoadedAfterSubmit.bind(null, name, phone, address, totalAmount), 1250);
-}
+        if (!name || !phone || !address) {
+          alert('অনুগ্রহ করে প্রয়োজনীয় তথ্যগুলো পূরণ করুন।');
+          return;
         }
 
         isSubmitting = true;
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> প্রসেসিং হচ্ছে...';
 
-var purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
+        var purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
+
+        // CAPI Call
+        sendCapi({
+          event_name: "Purchase",
+          event_id: purchaseEventId,
+          value: totalAmount,
+          currency: "BDT",
+          phone: phone,
+          name: name
+        });
+
         // GTM DataLayer Push
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: 'custom_purchase',
           event_id: purchaseEventId,
           value: totalAmount,
-          currency: 'BDT',
-          customer_name: name,
-          customer_phone: phone
+          currency: 'BDT'
         });
+
         // Google Form Submission Link
         var formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdFyYJcaKCzu2mZ1hxAxqoHdSgkQauPto8KAJS5BHECtb4YeA/formResponse";
         var formData = new URLSearchParams();
@@ -1033,7 +998,9 @@ var purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 1
           console.error("Form submit error", err);
         });
 
-        setTimeout(pageLoadedAfterSubmit.bind(null, name, phone, address, totalAmount), 1250);
+        setTimeout(function() {
+          pageLoadedAfterSubmit(name, phone, address, totalAmount);
+        }, 1250);
       }
 
       function pageLoadedAfterSubmit(name, phone, address, totalAmountNum) {
@@ -1120,7 +1087,7 @@ var purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 1
         var reviewImages = [
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg",
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QxcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
+          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUSD0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg"
         ];
         
