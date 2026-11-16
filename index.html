@@ -558,10 +558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="navbar">
         <div class="navbar-brand" style="font-size: 26px; font-weight: 800; background: linear-gradient(135deg, #10b981, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Marine Collagen Premium</div>
         <div class="nav-links">
-            <a href="#product-section">প্রডাক্ট</a>
-            <a href="#offer-section">অফার</a>
-            <a href="#faq-section">প্রশ্নোত্তর</a>
-            <button type="button" onclick="scrollToOrder()" style="font-size: 20px; color: var(--primary-color); background: none; border: none; cursor: pointer; padding: 0;">অর্ডার</button>        
+            <button type="button" onclick="scrollToOrder()">অর্ডার</button>      
         </div>
     </div>
 
@@ -957,12 +954,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           return;
         }
 
-        isSubmitting = true;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> প্রসেসিং হচ্ছে...';
+        // ডাবল ক্লিক বা একাধিক সাবমিশন রোধ করতে লক চেক
+if (window.isSubmittingProcessed) return;
+window.isSubmittingProcessed = true;
 
-        var purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
-
+// একবারই ইউনিক আইডি জেনারেট করার লজিক (ডাবল কাউন্ট রোধ করতে)
+if (!window.purchaseEventId) {
+    window.purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
+}
+var purchaseEventId = window.purchaseEventId;
+          
+isSubmitting = true;
+submitBtn.disabled = true;
+submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> প্রসেসিং হচ্ছে...';
         // CAPI Call
         sendCapi({
           event_name: "Purchase",
@@ -1102,6 +1106,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
       };
     //]]>
-    </script>
+// কর্নারের অর্ডার বাটন ক্লিক করলে ফর্মে স্ক্রোল করে নিয়ে যাওয়ার ফাংশন
+function scrollToOrder() {
+    var orderSection = document.getElementById('order-form-section'); 
+    if (orderSection) {
+        orderSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
 </body>
 </html>
