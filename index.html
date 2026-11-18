@@ -23,39 +23,6 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <script>
-      /* ---------- Conversions API helper (browser -> Cloudflare Worker) ---------- */
-      var CAPI_URL = 'https://marinecollagenpremium.as-taher2640.workers.dev/';
-
-      function getCookie(name) {
-        var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
-        return m ? decodeURIComponent(m[1]) : '';
-      }
-
-      function getFbc() {
-        var c = getCookie('_fbc');
-        if (c) return c;
-        try {
-          var id = new URLSearchParams(location.search).get('fbclid');
-          if (id) return 'fb.1.' + Date.now() + '.' + id;
-        } catch (e) {}
-        return '';
-      }
-
-      function sendCapi(payload) {
-        payload.event_source_url = location.href;
-        payload.event_time = Math.floor(Date.now() / 1000);
-        payload.fbp = getCookie('_fbp');
-        payload.fbc = getFbc();
-        return fetch(CAPI_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          keepalive: true
-        }).catch(function (err) { console.error('CAPI Error:', payload.event_name, err); });
-      }
-    </script>
-
     <style>
         :root {
             --primary-color: #e63946;
@@ -959,7 +926,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (window.isSubmittingProcessed) return;
         window.isSubmittingProcessed = true;
 
-        // একবারই ইউনিক আইডি জেনারেট করার লজিক (ডাবল কাউন্ট রোধ করতে)
+        // ডেডিকেটেড ইভেন্ট আইডি (Deduplication-এর জন্য ব্রাউজার এবং সার্ভার গেটওয়ে উভয় জায়গায় এটি ব্যবহার হবে)
         if (!window.purchaseEventId) {
             window.purchaseEventId = 'purch_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
         }
@@ -969,17 +936,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> প্রসেসিং হচ্ছে...';
 
-        // CAPI Call
-        sendCapi({
-          event_name: "Purchase",
-          event_id: purchaseEventId,
-          value: totalAmount,
-          currency: "BDT",
-          phone: phone,
-          name: name
-        });
-
-        // GTM DataLayer Push (ডুপ্লিকেট রোধ করতে event_id সহ পাঠানো হলো)
+        // GTM DataLayer Push (ডুপ্লিকেট এড়াতে event_id সহ পাঠানো হলো, যা Conversions API Gateway এর সাথে অটোমেটিক ডিডুপ্লিকেট হবে)
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: 'custom_purchase',
@@ -1093,10 +1050,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var reviewImages = [
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
           "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg",
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfmt8W1QcqBLxABh7cxfCXomE53IDjhw8n13ttf-xK6x1TkmtnmH3-t7tQum_rDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fuFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg"
+          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYzgbXIWXa55d8YSOB5y4SLje1cPjsXDwv1I0k4LGVnMhvUxemuFO38W-A7WppnocFG2rd-2WzKQ7_-OwPld3dWgustFEh_lM5WGHTfloorDOVSDhlrg123m7WFZftNfTI2DI/w288-h640/Review%2002.jpeg",
+          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZUmbhpi0FRUa3dsrj59HjCZx-vWhWau7J_GtcCRLBDT0EvJ5NAUoBu2KqRpkO9LtUXpSD8vvDZcFukK_wPCezgwFWganUOipjNkpOlHunNLCZ8RilSPPrlccOfpePZvmNu-SKhRoaLmNSoW3Koc6fUFEoWou2esYQQJ58vMChTVONOhh8IBoNu-VARJ0/w286-h640/Review%2001.jpg"
         ];
-        
         var rvTrack = document.getElementById("rv");
         if (rvTrack) {
           for (var i = 0; i < reviewImages.length; i++) {
